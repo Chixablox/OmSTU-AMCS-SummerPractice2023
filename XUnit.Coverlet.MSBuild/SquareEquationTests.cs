@@ -23,6 +23,22 @@ namespace Square.UnitTests.Equation
         }
 
         [Fact]
+        public void Test5()
+        {
+            bool result = false;
+            var squareEquation = new SquareEquation();
+            double[] ans = squareEquation.Solve(1, 3, -4);
+            double[] r_ans = new double[2] {-4,1};
+
+            if (Math.Abs(ans[0] - r_ans[0]) < 1e-5 & Math.Abs(ans[1] - r_ans[1]) < 1e-5)
+            {
+                result = true;
+            }
+
+            Assert.True(result, "Correct");
+        }
+
+        [Fact]
         public void Test2()
         {
             bool result = false;

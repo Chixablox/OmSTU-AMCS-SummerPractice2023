@@ -114,17 +114,17 @@ testRunner.Then("квадратное уравнение имеет два ко�
             this.ScenarioCleanup();
         }
         
-        [Xunit.SkippableFactAttribute(DisplayName="Если дискриминант квадратного уравнения равен 0, то квадратное уравнение имеет од" +
-            "ин корень кратности 2")]
+        [Xunit.SkippableFactAttribute(DisplayName="Если дискриминант квадратного уравнения больше 0, то квадратное уравнение имеет д" +
+            "ва корня кратности 1(при b!=0)")]
         [Xunit.TraitAttribute("FeatureTitle", "Вычисление корней квадратного уравнения")]
-        [Xunit.TraitAttribute("Description", "Если дискриминант квадратного уравнения равен 0, то квадратное уравнение имеет од" +
-            "ин корень кратности 2")]
-        public void ЕслиДискриминантКвадратногоУравненияРавен0ТоКвадратноеУравнениеИмеетОдинКореньКратности2()
+        [Xunit.TraitAttribute("Description", "Если дискриминант квадратного уравнения больше 0, то квадратное уравнение имеет д" +
+            "ва корня кратности 1(при b!=0)")]
+        public void ЕслиДискриминантКвадратногоУравненияБольше0ТоКвадратноеУравнениеИмеетДваКорняКратности1ПриB0()
         {
             string[] tagsOfScenario = ((string[])(null));
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Если дискриминант квадратного уравнения равен 0, то квадратное уравнение имеет од" +
-                    "ин корень кратности 2", null, tagsOfScenario, argumentsOfScenario, featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Если дискриминант квадратного уравнения больше 0, то квадратное уравнение имеет д" +
+                    "ва корня кратности 1(при b!=0)", null, tagsOfScenario, argumentsOfScenario, featureTags);
 #line 8
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -136,12 +136,46 @@ this.ScenarioInitialize(scenarioInfo);
             {
                 this.ScenarioStart();
 #line 9
-testRunner.Given("Квадратное уравнение с коэффициентами (1, -2, 1)", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Дано ");
+testRunner.Given("Квадратное уравнение с коэффициентами (1, 3, -4)", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Дано ");
 #line hidden
 #line 10
 testRunner.When("вычисляются корни квадратного уравнения", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Когда ");
 #line hidden
 #line 11
+testRunner.Then("квадратное уравнение имеет два корня (-4, 1) кратности один", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Тогда ");
+#line hidden
+            }
+            this.ScenarioCleanup();
+        }
+        
+        [Xunit.SkippableFactAttribute(DisplayName="Если дискриминант квадратного уравнения равен 0, то квадратное уравнение имеет од" +
+            "ин корень кратности 2")]
+        [Xunit.TraitAttribute("FeatureTitle", "Вычисление корней квадратного уравнения")]
+        [Xunit.TraitAttribute("Description", "Если дискриминант квадратного уравнения равен 0, то квадратное уравнение имеет од" +
+            "ин корень кратности 2")]
+        public void ЕслиДискриминантКвадратногоУравненияРавен0ТоКвадратноеУравнениеИмеетОдинКореньКратности2()
+        {
+            string[] tagsOfScenario = ((string[])(null));
+            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Если дискриминант квадратного уравнения равен 0, то квадратное уравнение имеет од" +
+                    "ин корень кратности 2", null, tagsOfScenario, argumentsOfScenario, featureTags);
+#line 14
+this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                this.ScenarioStart();
+#line 15
+testRunner.Given("Квадратное уравнение с коэффициентами (1, -2, 1)", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Дано ");
+#line hidden
+#line 16
+testRunner.When("вычисляются корни квадратного уравнения", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Когда ");
+#line hidden
+#line 17
 testRunner.Then("квадратное уравнение имеет один корень 1 кратности два", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Тогда ");
 #line hidden
             }
@@ -159,7 +193,7 @@ testRunner.Then("квадратное уравнение имеет один к�
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Если дискриминант квадратного уравнения меньше 0, то квадратное уравнение не имее" +
                     "т корней", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 13
+#line 19
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -169,13 +203,13 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 14
+#line 20
 testRunner.Given("Квадратное уравнение с коэффициентами (1, 0, 1)", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Дано ");
 #line hidden
-#line 15
+#line 21
 testRunner.When("вычисляются корни квадратного уравнения", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Когда ");
 #line hidden
-#line 16
+#line 22
 testRunner.Then("множество корней квадратного уравнения пустое", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Тогда ");
 #line hidden
             }
@@ -190,7 +224,7 @@ testRunner.Then("множество корней квадратного урав
             string[] tagsOfScenario = ((string[])(null));
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Коэффициент a квадратного уравнения не может быть равен 0", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 18
+#line 25
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -200,13 +234,13 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 19
+#line 26
 testRunner.Given("Квадратное уравнение с коэффициентами (1e-7, 0, 1)", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Дано ");
 #line hidden
-#line 20
+#line 27
 testRunner.When("вычисляются корни квадратного уравнения", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Когда ");
 #line hidden
-#line 21
+#line 28
 testRunner.Then("выбрасывается исключение ArgumentException", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Тогда ");
 #line hidden
             }
@@ -221,7 +255,7 @@ testRunner.Then("выбрасывается исключение ArgumentExcepti
             string[] tagsOfScenario = ((string[])(null));
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Коэффициент a квадратного уравнение не может быть не числом", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 23
+#line 30
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -231,13 +265,13 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 24
+#line 31
 testRunner.Given("Квадратное уравнение с коэффициентами (NaN, 0, 1)", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Дано ");
 #line hidden
-#line 25
+#line 32
 testRunner.When("вычисляются корни квадратного уравнения", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Когда ");
 #line hidden
-#line 26
+#line 33
 testRunner.Then("выбрасывается исключение ArgumentException", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Тогда ");
 #line hidden
             }
@@ -252,7 +286,7 @@ testRunner.Then("выбрасывается исключение ArgumentExcepti
             string[] tagsOfScenario = ((string[])(null));
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Коэффициент a квадратного уравнение не может быть положительной бесконечностью", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 28
+#line 35
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -262,13 +296,13 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 29
+#line 36
 testRunner.Given("Квадратное уравнение с коэффициентами (Double.PositiveInfinity, 0, 1)", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Дано ");
 #line hidden
-#line 30
+#line 37
 testRunner.When("вычисляются корни квадратного уравнения", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Когда ");
 #line hidden
-#line 31
+#line 38
 testRunner.Then("выбрасывается исключение ArgumentException", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Тогда ");
 #line hidden
             }
@@ -283,7 +317,7 @@ testRunner.Then("выбрасывается исключение ArgumentExcepti
             string[] tagsOfScenario = ((string[])(null));
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Коэффициент a квадратного уравнение не может быть отрицательной бесконечностью", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 33
+#line 40
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -293,13 +327,13 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 34
+#line 41
 testRunner.Given("Квадратное уравнение с коэффициентами (Double.NegativeInfinity, 0, 1)", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Дано ");
 #line hidden
-#line 35
+#line 42
 testRunner.When("вычисляются корни квадратного уравнения", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Когда ");
 #line hidden
-#line 36
+#line 43
 testRunner.Then("выбрасывается исключение ArgumentException", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Тогда ");
 #line hidden
             }
@@ -314,7 +348,7 @@ testRunner.Then("выбрасывается исключение ArgumentExcepti
             string[] tagsOfScenario = ((string[])(null));
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Коэффициент b квадратного уравнение не может быть не числом", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 38
+#line 45
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -324,13 +358,13 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 39
+#line 46
 testRunner.Given("Квадратное уравнение с коэффициентами (1, NaN, 1)", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Дано ");
 #line hidden
-#line 40
+#line 47
 testRunner.When("вычисляются корни квадратного уравнения", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Когда ");
 #line hidden
-#line 41
+#line 48
 testRunner.Then("выбрасывается исключение ArgumentException", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Тогда ");
 #line hidden
             }
@@ -345,7 +379,7 @@ testRunner.Then("выбрасывается исключение ArgumentExcepti
             string[] tagsOfScenario = ((string[])(null));
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Коэффициент b квадратного уравнение не может быть положительной бесконечностью", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 43
+#line 50
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -355,13 +389,13 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 44
+#line 51
 testRunner.Given("Квадратное уравнение с коэффициентами (1, Double.PositiveInfinity, 1)", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Дано ");
 #line hidden
-#line 45
+#line 52
 testRunner.When("вычисляются корни квадратного уравнения", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Когда ");
 #line hidden
-#line 46
+#line 53
 testRunner.Then("выбрасывается исключение ArgumentException", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Тогда ");
 #line hidden
             }
@@ -376,7 +410,7 @@ testRunner.Then("выбрасывается исключение ArgumentExcepti
             string[] tagsOfScenario = ((string[])(null));
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Коэффициент b квадратного уравнение не может быть отрицательной бесконечностью", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 48
+#line 55
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -386,13 +420,13 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 49
+#line 56
 testRunner.Given("Квадратное уравнение с коэффициентами (1, Double.NegativeInfinity, 1)", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Дано ");
 #line hidden
-#line 50
+#line 57
 testRunner.When("вычисляются корни квадратного уравнения", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Когда ");
 #line hidden
-#line 51
+#line 58
 testRunner.Then("выбрасывается исключение ArgumentException", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Тогда ");
 #line hidden
             }
@@ -407,7 +441,7 @@ testRunner.Then("выбрасывается исключение ArgumentExcepti
             string[] tagsOfScenario = ((string[])(null));
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Коэффициент c квадратного уравнение не может быть не числом", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 53
+#line 60
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -417,13 +451,13 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 54
+#line 61
 testRunner.Given("Квадратное уравнение с коэффициентами (1, 0, NaN)", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Дано ");
 #line hidden
-#line 55
+#line 62
 testRunner.When("вычисляются корни квадратного уравнения", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Когда ");
 #line hidden
-#line 56
+#line 63
 testRunner.Then("выбрасывается исключение ArgumentException", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Тогда ");
 #line hidden
             }
@@ -438,7 +472,7 @@ testRunner.Then("выбрасывается исключение ArgumentExcepti
             string[] tagsOfScenario = ((string[])(null));
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Коэффициент c квадратного уравнение не может быть положительной бесконечностью", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 58
+#line 65
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -448,13 +482,13 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 59
+#line 66
 testRunner.Given("Квадратное уравнение с коэффициентами (1, 0, Double.PositiveInfinity)", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Дано ");
 #line hidden
-#line 60
+#line 67
 testRunner.When("вычисляются корни квадратного уравнения", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Когда ");
 #line hidden
-#line 61
+#line 68
 testRunner.Then("выбрасывается исключение ArgumentException", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Тогда ");
 #line hidden
             }
@@ -469,7 +503,7 @@ testRunner.Then("выбрасывается исключение ArgumentExcepti
             string[] tagsOfScenario = ((string[])(null));
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Коэффициент c квадратного уравнение не может быть отрицательной бесконечностью", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 63
+#line 70
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -479,13 +513,13 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 64
+#line 71
 testRunner.Given("Квадратное уравнение с коэффициентами (1, 0, Double.NegativeInfinity)", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Дано ");
 #line hidden
-#line 65
+#line 72
 testRunner.When("вычисляются корни квадратного уравнения", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Когда ");
 #line hidden
-#line 66
+#line 73
 testRunner.Then("выбрасывается исключение ArgumentException", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Тогда ");
 #line hidden
             }
