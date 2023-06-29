@@ -37,7 +37,7 @@ public class SquareEquation
                 }
                 else
                 {
-                    x1=-b/2*a;
+                    x1=-(Math.Sqrt(D))/2;
                 }
                 x2 = c / x1;
                 double[] ans = new double[2] { x1, x2 };
