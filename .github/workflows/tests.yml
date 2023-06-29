@@ -1,5 +1,6 @@
 name: square equation test
 
+
 on:
   push:
     branches: ["BDD_branch"]
@@ -20,7 +21,7 @@ jobs:
         run: dotnet restore SquareEquationLib
 
       - name: Build
-        run: dotnet build --no-restore /p:ContinuousIntegrationBuild=true
+        run: dotnet build SquareEquationLib --no-restore /p:ContinuousIntegrationBuild=true
 
-      - name: Test
+      - name: BDD-Unit-Test
         run: dotnet test /p:CollectCoverage=true /p:CoverletOutputFormat=cobertura
