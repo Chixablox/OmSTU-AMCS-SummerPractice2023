@@ -5,7 +5,7 @@ VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SquareEquationLib", "SquareEquationLib\SquareEquationLib.csproj", "{C34252D0-A274-4275-8132-5E22F178DA2D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XUnit.Coverlet.MSBuild", "XUnit.Coverlet.MSBuild\XUnit.Coverlet.MSBuild.csproj", "{E64E9483-ABCB-409B-8FB4-5EAE269C957F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SquareEquationLib.Tests", "SquareEquationLib.Tests\XUnit.Coverlet.MSBuild.csproj", "{E64E9483-ABCB-409B-8FB4-5EAE269C957F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
