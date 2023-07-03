@@ -44,18 +44,18 @@ using System.CommandLine;
         static List<dynamic> GetBestGroupsByDiscipline (SpaceJson json)
         {
             var bestGroupsByDiscipline = json.data
-            .GroupBy(s => new { s.discipline, s.group })
-            .Select(g => new
+            .GroupBy(cadet => new { cadet.discipline, cadet.group })
+            .Select(cadet => new
             {
-                Discipline = g.Key.discipline,
-                Group = g.Key.group,
-                GPA = g.Average(s => s.mark)
+                Discipline = cadet.Key.discipline,
+                Group = cadet.Key.group,
+                GPA = cadet.Average(c1 => c1.mark)
             })
-            .GroupBy(g => g.Discipline)
-            .Select(g => new JObject(
-                new JProperty("Discipline", g.Key),
-                new JProperty("Group", g.OrderByDescending(gg => gg.GPA).FirstOrDefault()?.Group),
-                new JProperty("GPA", g.Max(gg => gg.GPA))))
+            .GroupBy(cadet => cadet.Discipline)
+            .Select(cadet => new JObject(
+                new JProperty("Discipline", cadet.Key),
+                new JProperty("Group", cadet.OrderByDescending(c1 => c1.GPA).FirstOrDefault()?.Group),
+                new JProperty("GPA", cadet.Max(c1 => c1.GPA))))
             .ToList<dynamic>();
 
             return bestGroupsByDiscipline;
