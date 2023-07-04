@@ -109,23 +109,28 @@ public class SpaceShip
     {
         private T object_;
         private Pool<T> pool;
+        private bool _dispValue = false;
         public PoolGuard(Pool<T> pool)
         {
             this.pool = pool;
             this.object_ = pool.Get();
         }
-        public T AccessObject()
+        public void Dispose()
         {
-            return this.object_;
-        }
-        void IDisposable.Dispose()
-        {
-            this.Release();
+            Dispose(disposing: true);
             GC.SuppressFinalize(this);
         }
-        private void Release()
+        protected virtual void Dispose(bool disposing)
         {
-            this.pool.Return(object_);
+            if (!this._dispValue)
+            {
+                if (disposing) pool.Return(object_);
+            }
+            _dispValue = true;
+        }
+        ~PoolGuard() 
+        {
+             Dispose(disposing: false); 
         }
     }
 }
