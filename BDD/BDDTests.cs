@@ -50,41 +50,24 @@ public class StepDefinitions
     public void QuadraticEquationHasOneRoot(double x1)
     {
         double[] r_ans = new double[] {x1};
-        bool result = false;
         
-        if (Math.Abs(ans[0] - r_ans[0]) < eps)
-        {
-            result = true;
-        }
-
-        Assert.True(result, "Incorrect");
+        Assert.Equal(r_ans, ans);
     }
 
     [Then(@"квадратное уравнение имеет два корня \((.*), (.*)\) кратности один")]
     public void QuadraticEquationHasTwoRoots(double x1, double x2)
     {
         double[] r_ans = new double[] {x1, x2};
-        bool result = false;
         Array.Sort(r_ans);
         
-        if (Math.Abs(ans[0] - r_ans[0]) < eps & Math.Abs(ans[1] - r_ans[1]) < eps)
-        {
-            result = true;
-        }
-
-        Assert.True(result, "Incorrect");
+        Assert.Equal(r_ans, ans);
     }
 
     [Then(@"множество корней квадратного уравнения пустое")]
     public void SqaureEquationHasNoRoots()
     {
         double[] r_ans = new double[]{};
-        bool result = false;
-        if (ans.Length == 0 & r_ans.Length == 0)
-        {
-            result = true;
-        }
 
-        Assert.True(result, "Incorrect");
+        Assert.Equal(r_ans, ans);
     }
 }
