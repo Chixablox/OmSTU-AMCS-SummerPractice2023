@@ -24,7 +24,7 @@ using System.Linq;
             var studentsWithHighestGPA = json.data
             .GroupBy(c => c.name)
             .Where(c=> c.Average(x => x.mark) == max)
-            .Select(c=> new JObject(new JProperty("Cadet", c.Key), new JProperty("GPA", Convert.ToInt32(c.Average(x=> x.mark)))));
+            .Select(c=> new JObject(new JProperty("Cadet", c.Key), new JProperty("GPA", c.Average(x=> x.mark))));
 
             return studentsWithHighestGPA;
         }
