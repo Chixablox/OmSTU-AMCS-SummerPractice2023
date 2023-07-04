@@ -24,7 +24,7 @@ using System.Linq;
             var studentsWithHighestGPA = json.data
             .GroupBy(c => c.name)
             .Where(c=> c.Average(x => x.mark) == max)
-            .Select(c=> new JObject(new JProperty("Cadet", c.Key), new JProperty("GPA", c.Average(x=> x.mark))));
+            .Select(c=> new JObject(new JProperty("Cadet", c.Key), new JProperty("GPA", Convert.ToInt32(c.Average(x=> x.mark)))));
 
             return studentsWithHighestGPA;
         }
@@ -52,10 +52,6 @@ using System.Linq;
         }
         static void Main(string[] args)
         {
-
-            //string inputPath = "input1.json";
-            //string outputPath = "output1.json";
-
             string inputPath = args[0];
             string outputPath = args[1];
 
