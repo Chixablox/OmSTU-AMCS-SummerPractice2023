@@ -86,7 +86,7 @@ public class SpaceShip
         }
 
     }
-        public class Pool<T>
+    public class Pool<T>
     {
         private readonly ConcurrentBag<T> _objects;
         private readonly Func<T> _objectGenerator;
