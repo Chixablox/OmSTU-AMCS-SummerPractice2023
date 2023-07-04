@@ -3,7 +3,6 @@ using Newtonsoft.Json.Linq;
 using Newtonsoft;
 using System.IO;
 using System.Linq;
-using System.CommandLine;
 
     class SpaceJson
     {
@@ -21,11 +20,11 @@ using System.CommandLine;
     {
         static List<dynamic> GetStudentsWithHighestGPA(SpaceJson json)
         {
-            double highestGPA = json.data.Max(cadet=> (cadet.mark+cadet.mark)/2);
+            var max =  json.data.GroupBy(c => c.name).Max(c => c.Average(x=> x.mark));
             var studentsWithHighestGPA = json.data
-            .Where(cadet=>((cadet.mark+cadet.mark)/2==highestGPA))
-            .Select(cadet=> new{Name = cadet.name, GPA = cadet.mark })
-            .Distinct()
+            .GroupBy(c => c.name)
+            .Where(c=> c.Average(x => x.mark) == max)
+            .Select(c=> new {Cadet = c.Key, GPA = c.Average(x=> x.mark)})
             .ToList<dynamic>();
 
             return studentsWithHighestGPA;
@@ -34,8 +33,8 @@ using System.CommandLine;
         static List<dynamic> CalculateGPAByDiscipline(SpaceJson json)
         {
             var GPAByDiscipline = json.data
-            .GroupBy(cadet => cadet.discipline)
-            .Select(dis => new JObject(new JProperty(dis.Key, dis.Average(cadet => cadet.mark))))
+            .GroupBy(c => c.discipline)
+            .Select(d => new JObject(new JProperty(d.Key, d.Average(c => c.mark))))
             .ToList<dynamic>();
 
             return GPAByDiscipline;
@@ -44,18 +43,12 @@ using System.CommandLine;
         static List<dynamic> GetBestGroupsByDiscipline (SpaceJson json)
         {
             var bestGroupsByDiscipline = json.data
-            .GroupBy(cadet => new { cadet.discipline, cadet.group })
-            .Select(cadet => new
-            {
-                Discipline = cadet.Key.discipline,
-                Group = cadet.Key.group,
-                GPA = cadet.Average(c1 => c1.mark)
-            })
-            .GroupBy(cadet => cadet.Discipline)
-            .Select(cadet => new JObject(
-                new JProperty("Discipline", cadet.Key),
-                new JProperty("Group", cadet.OrderByDescending(c1 => c1.GPA).FirstOrDefault()?.Group),
-                new JProperty("GPA", cadet.Max(c1 => c1.GPA))))
+            .GroupBy(c => new { c.discipline, c.group })
+            .Select(d => new { Discipline = d.Key.discipline,Group = d.Key.group, GPA = d.Average(c => c.mark)})
+            .GroupBy(d => d.Discipline)
+            .Select(s => new JObject(new JProperty("Discipline", s.Key), 
+                    new JProperty("Group", s.OrderByDescending(c => c.GPA).FirstOrDefault().Group),
+                    new JProperty("GPA", s.Max(c => c.GPA))))
             .ToList<dynamic>();
 
             return bestGroupsByDiscipline;
@@ -63,8 +56,11 @@ using System.CommandLine;
         static void Main(string[] args)
         {
 
-            string inputPath = Convert.ToString(args[0]);
-            string outputPath = Convert.ToString(args[1]);
+            /*string inputPath = "input1.json";
+            string outputPath = "output1.json";*/
+
+            string inputPath = args[0];
+            string outputPath = args[1];
 
             var json = JsonConvert.DeserializeObject<SpaceJson>(File.ReadAllText(inputPath));
 
