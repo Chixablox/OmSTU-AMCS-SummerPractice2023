@@ -6,7 +6,6 @@ using TechTalk.SpecFlow;
 [Binding]
 public class StepDefinitions
 {
-    private double eps = 1e-5;
     private double[] coef = new double[3];
     private double[] ans = new double[0];
     private Exception r_exp = new Exception();
