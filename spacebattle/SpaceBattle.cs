@@ -86,8 +86,7 @@ public class SpaceShip
         }
 
     }
-
-    public class Pool<T>
+        public class Pool<T>
     {
         private readonly ConcurrentBag<T> _objects;
         private readonly Func<T> _objectGenerator;
@@ -100,7 +99,10 @@ public class SpaceShip
 
         public T Get() => _objects.TryTake(out T item) ? item : _objectGenerator();
 
-        public void Return(T item) => _objects.Add(item);
+        public void Return(T item)
+        {
+            _objects.Add(item);
+        } 
     }
 
     public class PoolGuard<T> : IDisposable
