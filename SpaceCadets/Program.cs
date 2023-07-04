@@ -6,41 +6,39 @@ using System.Linq;
 
     class SpaceJson
     {
-        public string taskName;
-        public SpaceCadets[] data;
+        public string taskName = "";
+        public SpaceCadets[] data = new SpaceCadets[]{};
     }
     class SpaceCadets
     {
-        public string name;
-        public string group;
-        public string discipline;
-        public double mark;
+        public string name = "";
+        public string group = "";
+        public string discipline = "";
+        public double mark = 0;
     }
     class SpaceCadetsMark
     {
-        static List<dynamic> GetStudentsWithHighestGPA(SpaceJson json)
+        static IEnumerable<Newtonsoft.Json.Linq.JObject> GetStudentsWithHighestGPA(SpaceJson json)
         {
             var max =  json.data.GroupBy(c => c.name).Max(c => c.Average(x=> x.mark));
             var studentsWithHighestGPA = json.data
             .GroupBy(c => c.name)
             .Where(c=> c.Average(x => x.mark) == max)
-            .Select(c=> new {Cadet = c.Key, GPA = c.Average(x=> x.mark)})
-            .ToList<dynamic>();
+            .Select(c=> new JObject(new JProperty("Cadet", c.Key), new JProperty("GPA", c.Average(x=> x.mark))));
 
             return studentsWithHighestGPA;
         }
 
-        static List<dynamic> CalculateGPAByDiscipline(SpaceJson json)
+        static IEnumerable<Newtonsoft.Json.Linq.JObject> CalculateGPAByDiscipline(SpaceJson json)
         {
             var GPAByDiscipline = json.data
             .GroupBy(c => c.discipline)
-            .Select(d => new JObject(new JProperty(d.Key, d.Average(c => c.mark))))
-            .ToList<dynamic>();
+            .Select(d => new JObject(new JProperty(d.Key, d.Average(c => c.mark))));
 
             return GPAByDiscipline;
         }
 
-        static List<dynamic> GetBestGroupsByDiscipline (SpaceJson json)
+        static IEnumerable<Newtonsoft.Json.Linq.JObject> GetBestGroupsByDiscipline (SpaceJson json)
         {
             var bestGroupsByDiscipline = json.data
             .GroupBy(c => new { c.discipline, c.group })
@@ -48,16 +46,15 @@ using System.Linq;
             .GroupBy(d => d.Discipline)
             .Select(s => new JObject(new JProperty("Discipline", s.Key), 
                     new JProperty("Group", s.OrderByDescending(c => c.GPA).FirstOrDefault().Group),
-                    new JProperty("GPA", s.Max(c => c.GPA))))
-            .ToList<dynamic>();
+                    new JProperty("GPA", s.Max(c => c.GPA))));
 
             return bestGroupsByDiscipline;
         }
         static void Main(string[] args)
         {
 
-            /*string inputPath = "input1.json";
-            string outputPath = "output1.json";*/
+            //string inputPath = "input1.json";
+            //string outputPath = "output1.json";
 
             string inputPath = args[0];
             string outputPath = args[1];
@@ -66,20 +63,20 @@ using System.Linq;
 
             if(json.taskName =="GetStudentsWithHighestGPA")
             {
-                List<dynamic> ans = GetStudentsWithHighestGPA(json);
-                var result = new { Response = ans };
+                IEnumerable<Newtonsoft.Json.Linq.JObject> ans = GetStudentsWithHighestGPA(json);
+                var result = new JObject(new JProperty("Response", ans));
                 File.WriteAllText(outputPath, JsonConvert.SerializeObject(result, Formatting.Indented));
             }
             else if(json.taskName == "CalculateGPAByDiscipline")
             {
-                List<dynamic> ans = CalculateGPAByDiscipline(json);
-                var result = new { Response = ans };
+                IEnumerable<Newtonsoft.Json.Linq.JObject> ans = CalculateGPAByDiscipline(json);
+                var result = new JObject(new JProperty("Response", ans));
                 File.WriteAllText(outputPath, JsonConvert.SerializeObject(result, Formatting.Indented));
             }
             else if(json.taskName == "GetBestGroupsByDiscipline")
             {
-                List<dynamic> ans = GetBestGroupsByDiscipline(json);
-                var result = new { Response = ans };
+                IEnumerable<Newtonsoft.Json.Linq.JObject> ans = GetBestGroupsByDiscipline(json);
+                var result = new JObject(new JProperty("Response", ans));
                 File.WriteAllText(outputPath, JsonConvert.SerializeObject(result, Formatting.Indented));
             }
         }
