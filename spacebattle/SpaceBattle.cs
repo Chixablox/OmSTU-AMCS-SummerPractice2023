@@ -1,4 +1,5 @@
-﻿namespace SpaceBattle;
+﻿using System.Collections.Concurrent;
+namespace SpaceBattle;
 public class SpaceShip
 {
     
@@ -85,4 +86,51 @@ public class SpaceShip
         }
 
     }
- }
+    public class Pool<T>
+    {
+        private readonly ConcurrentBag<T> _objects;
+        private readonly Func<T> _objectGenerator;
+
+        public Pool(Func<T> objectGenerator)
+        {
+            _objectGenerator = objectGenerator ?? throw new ArgumentNullException(nameof(objectGenerator));
+            _objects = new ConcurrentBag<T>();
+        }
+
+        public T Get() => _objects.TryTake(out T item) ? item : _objectGenerator();
+
+        public void Return(T item)
+        {
+            _objects.Add(item);
+        } 
+    }
+
+    public class PoolGuard<T> : IDisposable
+    {
+        private T object_;
+        private Pool<T> pool;
+        private bool _dispValue = false;
+        public PoolGuard(Pool<T> pool)
+        {
+            this.pool = pool;
+            this.object_ = pool.Get();
+        }
+        public void Dispose()
+        {
+            Dispose(disposing: true);
+            GC.SuppressFinalize(this);
+        }
+        protected virtual void Dispose(bool disposing)
+        {
+            if (!this._dispValue)
+            {
+                if (disposing) pool.Return(object_);
+            }
+            _dispValue = true;
+        }
+        ~PoolGuard() 
+        {
+             Dispose(disposing: false); 
+        }
+    }
+}
