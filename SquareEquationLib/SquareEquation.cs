@@ -6,7 +6,6 @@ public class SquareEquation
 {
     public double[] Solve(double a, double b, double c)
     {
-        //Пользовался double.Epsilon, оно не работало, решил взять из презентации - заработало
         double eps = 1e-5;
         if (Math.Abs(a) < eps)
         {
@@ -31,7 +30,7 @@ public class SquareEquation
             double D = Math.Pow(b, 2) - 4 * a * c;
             if (D >= eps)
             {
-                if(b!=0)
+                if(Math.Abs(b) >= eps)
                 {
                     x1 = -(b + Math.Sign(b) * Math.Sqrt(D)) / 2;
                 }
