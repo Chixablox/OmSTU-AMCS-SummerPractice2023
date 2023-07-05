@@ -24,7 +24,7 @@ using System.Linq;
             var studentsWithHighestGPA = json.data
             .GroupBy(c => c.name)
             .Where(c=> c.Average(x => x.mark) == max)
-            .Select(c=> new JObject(new JProperty("Cadet", c.Key), new JProperty("GPA", c.Average(x=> x.mark))));
+            .Select(c=> new JObject(new JProperty("Cadet", c.Key), new JProperty("GPA", Convert.ToInt32(c.Average(x=> x.mark)))));
 
             return studentsWithHighestGPA;
         }
@@ -33,7 +33,7 @@ using System.Linq;
         {
             var GPAByDiscipline = json.data
             .GroupBy(c => c.discipline)
-            .Select(d => new JObject(new JProperty(d.Key, d.Average(c => c.mark))));
+            .Select(d => new JObject(new JProperty(d.Key, Math.Round(d.Average(c => c.mark),2))));
 
             return GPAByDiscipline;
         }
@@ -46,7 +46,7 @@ using System.Linq;
             .GroupBy(d => d.Discipline)
             .Select(s => new JObject(new JProperty("Discipline", s.Key), 
                     new JProperty("Group", s.OrderByDescending(c => c.GPA).FirstOrDefault().Group),
-                    new JProperty("GPA", s.Max(c => c.GPA))));
+                    new JProperty("GPA", Math.Round(s.Max(c => c.GPA),2))));
 
             return bestGroupsByDiscipline;
         }
